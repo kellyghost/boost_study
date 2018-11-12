@@ -37,4 +37,6 @@ int main()
   world w;
   f(&w,boost::ref(std::cout));
 
+
+
 }
