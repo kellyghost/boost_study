@@ -1,19 +1,23 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <functional>
 
-void print(int i)
+class add : public std::binary_function<int,int,void>
 {
-  std::cout << i << '\n';
-}
+public:
+  void operator()(int i, int j)const
+  {
+    std::cout << i + j << std::endl;
+  }
+};
 
 int main()
 {
-  std::vector<int> V;
-  V.push_back(1);
-  V.push_back(2);
-  V.push_back(3);
+  std::vector<int> v;
+  v.push_back(1);
+  v.push_back(2);
+  v.push_back(3);
 
-  std::for_each(V.begin(),V.end(),print);
-
+  std::for_each(v.begin(),v.end(),std::bind1st(add(),10));
 }
