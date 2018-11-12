@@ -1,16 +1,13 @@
+#include <boost/bind.hpp>
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <functional>
 
-class add : public std::binary_function<int,int,void>
+void add(int i, int j)
 {
-public:
-  void operator()(int i, int j)const
-  {
-    std::cout << i + j << std::endl;
-  }
-};
+  std::cout << i+j << std::endl;
+}
+
 
 int main()
 {
@@ -19,5 +16,5 @@ int main()
   v.push_back(2);
   v.push_back(3);
 
-  std::for_each(v.begin(),v.end(),std::bind1st(add(),10));
+  std::for_each(v.begin(),v.end(),boost::bind(add,10,_1));
 }
